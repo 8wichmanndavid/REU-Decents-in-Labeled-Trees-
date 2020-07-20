@@ -49,12 +49,16 @@ class Node {
 
         // Finding a maximal descent point
         Node* findMaximal();
+        
+        size_t sumOfHooklengthsOfMaximalDecents();
 
         // The Big Bad Boy Himself
         size_t des();
         
+        size_t baseCase();
+        
         //find points for polinomial
-        //*pair<int[], int[]> getPolinomialPoints(Node* cn)
+        void getPolinomialPoints();
 
         /******************************
          * Tree Constructing Methods***

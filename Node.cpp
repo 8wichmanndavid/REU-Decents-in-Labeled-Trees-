@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <list>
 #include <iostream>
+#include <fstream>
 
 #include "Node.h"
 
@@ -127,9 +128,9 @@ Node* Node::findMaximal() {
         return this;
     } else {
         for (list<Node*>::iterator it=children_.begin(); it != children_.end(); ++it) { 
-        Node* maxCandidate = (**it).findMaximal();
-        if (maxCandidate != nullptr) {
-            return maxCandidate;
+            Node* maxCandidate = (**it).findMaximal();
+            if (maxCandidate != nullptr) {
+                return maxCandidate;
         }
         }
     }
@@ -144,11 +145,17 @@ size_t Node::des() {
         if (size_ == 0) {
             return 1;
         }
-        return fact(size_) / productOfDescendantSize();
-    } else {
+        //return fact(size_) / productOfDescendantSize();
+        return baseCase();
+    }
+    if (isDescent_){
+        return 0;
+    }
+    else {
         Node* maximal = findMaximal();
+        
+        /*cout << "I made it here with numDescents_ = " << numDescents_ << endl;/*
         /*
-        cout << "I made it here with numDescents_ = " << numDescents_ << endl;
         if (maximal == nullptr) {
             cout << "yeah, it's null bro" << endl;
         }
@@ -160,15 +167,41 @@ size_t Node::des() {
         subtreeBranch->ascentifyCopy(*maximal, *maximal);
         ascentifyBranch->ascentifyCopy(*this, *maximal);
         pruneBranch->pruneCopy(*this, *maximal);
-        /*
-        cout << "information about ascentify and prune: ascentify size = " << ascentifyBranch->size_ << ". ascentify descents = " << ascentifyBranch->numDescents_ << "." << endl;
-        cout << "prune size = " << pruneBranch->size_ << ". prune descents = " << pruneBranch->numDescents_ << endl; 
-        */
+        
+        //cout << "information about ascentify and prune: ascentify size = " << ascentifyBranch->size_ << ". ascentify descents = " << ascentifyBranch->numDescents_ << "." << endl;
+        //cout << "prune size = " << pruneBranch->size_ << ". prune descents = " << pruneBranch->numDescents_ << endl; 
+        
         size_t A = subtreeBranch->des();
+        //cout<< A << endl;
+        
         size_t B = ascentifyBranch->des();
+        //cout<< B << endl;
+        
         size_t C = pruneBranch->des();
+        //cout<< C << endl;
+        
         return NCR(size_, maximal->size_)*A*C - B;
     }
+}
+
+size_t Node::baseCase(){
+    if (size_ == 0 || size_ == 1 || size_ == 2){
+        return 1;
+    }
+    else if (children_.size() == 1){
+        return children_.front()->baseCase();
+    }
+    else {
+        size_t product = 1;
+        size_t n = size_ - 1;
+        size_t r;
+        for (list<Node*>::iterator it=children_.begin(); it != children_.end(); ++it){
+            r = (*it)->size_;
+            product *= (*it)->baseCase() * NCR(n,r);
+            n -= r;
+        };
+        return product;
+    };
 }
 
 Node* Node::addChild(bool isDescent) {
@@ -207,30 +240,27 @@ Node* Node::addStem(int n){
     return top;
 };
 
-/*
-*pair<int[], int[]> Node::getPolinomialPoints(){
-    numPoints = size_ +1;
-    Node* temp = new Node;
-    int *x = new int[numPoints];
-    int *y = new int[numPoints];
-    *pair<int[], int[]> coords = new pair<int[], int[]>;
-    for (int lcv = 1; lcv < numPoints +1; lcv++){
-        temp = addStem(size_+lcv);
-        x[lcv-1] = lcv;
-        y[lcv-1] temp -> des();
-        
+size_t Node::sumOfHooklengthsOfMaximalDecents(){
+    if (isDescent_){
+        return size_;
     }
-    coords -> first = *x;
-    coords -> second = *y;
-    return coords;
+    size_t sum = 0;     
+    for (list<Node*>::iterator it=children_.begin(); it != children_.end(); ++it){
+        sum += (*it)->size_;
+    };
+    return sum;
 }
 
-*/
 
-
-
-
-
+void Node::getPolinomialPoints(){
+    ofstream myfile;
+    myfile.open ("output.txt");
+    for (size_t lcv = 0; lcv < sumOfHooklengthsOfMaximalDecents() + 1; lcv++){
+        Node* stem = addStem(size_ + lcv + 1);
+        myfile << stem->des() << ", ";
+    }
+    myfile.close();
+}
 
 
 
