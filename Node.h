@@ -58,7 +58,7 @@ class Node {
         size_t baseCase();
         
         //find points for polinomial
-        void getPolinomialPoints();
+        void getPolynomialPoints();
 
         /******************************
          * Tree Constructing Methods***

@@ -154,8 +154,7 @@ size_t Node::des() {
     else {
         Node* maximal = findMaximal();
         
-        /*cout << "I made it here with numDescents_ = " << numDescents_ << endl;/*
-        /*
+        /*cout << "I made it here with numDescents_ = " << numDescents_ << endl;
         if (maximal == nullptr) {
             cout << "yeah, it's null bro" << endl;
         }
@@ -246,13 +245,13 @@ size_t Node::sumOfHooklengthsOfMaximalDecents(){
     }
     size_t sum = 0;     
     for (list<Node*>::iterator it=children_.begin(); it != children_.end(); ++it){
-        sum += (*it)->size_;
+        sum += (*it)->sumOfHooklengthsOfMaximalDecents();
     };
     return sum;
 }
 
 
-void Node::getPolinomialPoints(){
+void Node::getPolynomialPoints(){
     ofstream myfile;
     myfile.open ("output.txt");
     for (size_t lcv = 0; lcv < sumOfHooklengthsOfMaximalDecents() + 1; lcv++){
