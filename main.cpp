@@ -15,7 +15,7 @@ void addChildren(int numChildren, bool isDes, Node* cn, queue<Node*>& cq){
 //or a 0 if it's not
 Node* buildTree(int parameters[]){
     queue<Node*> nodeQueue;
-    Node* root = new Node{1, 0, static_cast<bool>(parameters[0])};
+    Node* root = new Node{1, static_cast<size_t>(parameters[0]), static_cast<bool>(parameters[0])};
     nodeQueue.push(root);
     int idx = 1;
     while (!nodeQueue.empty()){
@@ -30,7 +30,7 @@ Node* buildTree(int parameters[]){
 
 
 int main(int, char**) {    
-    int para[] = {0, 2, 1, 1, 1, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0};
+    int para[] = {0, 1, 1, 1, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0};
     Node* tree = buildTree(para);
     cout << tree->sumOfHooklengthsOfMaximalDecents() << endl; 
     tree->getPolynomialPoints();   
