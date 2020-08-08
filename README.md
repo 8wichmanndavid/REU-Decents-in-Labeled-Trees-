@@ -15,6 +15,7 @@ it children
 In the reference method, you use the fact that our addChild method returns a reference to the node that it adds and keep references to every new node you add. For the tree pictured below the reference method would look something like the following (for a descent at the root, change the root constructor parameters to {1, 1, true}): 
 
 <img src="https://github.com/8wichmanndavid/REU-Decents-in-Labeled-Trees-/blob/master/images/IMG_1557.PNG" width="300">
+
 ```c++
 Node* root = new Node{1, 0, false};
 Node* a = root->addChild(true);
