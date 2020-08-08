@@ -8,6 +8,9 @@ Currently, there are two methods of tree-building supported by the code. The two
 The "Reference" method is more approachable but potentially more tedious. With practice, the "Integer List" method is much quicker and has the advantage of easily storing 
 a tree's critical information, but is more prone to user error and less approachable. 
 
+## Caution: 
+Before getting too far in the tutorial, we advise that this code can be overwhelmed by very large trees. Trees with a low concentration of descents in the upper part of the tree can get larger while staying safe. We are not sure exactly at what point accuracy starts getting lost but are pretty confident that any tree with less than 30 vertices should be safe and we have found that trees with descents only in the lower region of the tree are accurate to at least n = 120 (we stopped trying after n=120 still worked). Regardless, take heart that it is quite easy to tell when accuracy has been lost. Due to the precision of polynomial interpolation and the nice structure of d(T;n), you can tell that the code has likely lost accuracy if you observe irrational polynomial coefficients, a lack of integer roots, or end behavior that approaches negative infinity. 
+
 ## Tree Building
 One crucial thing to note about tree building with this code is that there is no tree object. You build a tree by creating a node and keeping a reference to that node as you give
 it children
