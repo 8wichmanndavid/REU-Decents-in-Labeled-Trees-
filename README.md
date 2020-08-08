@@ -20,6 +20,7 @@ Node* b = root->addChild(false);
 Node* c = b->addChild(true);
 ```
 ![BaseTree](/images/IMG_1557.PNG)
+
 The parameter passed into addChild determines if the node will be created as a descent (if true) or an ascent (if false). 
 ### The Integer List Method
 The integer list method condenses the tree's information into a list of integers which can then be easily stored in a database or sent between collaborators.
