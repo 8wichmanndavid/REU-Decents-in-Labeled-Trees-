@@ -72,6 +72,6 @@ Node* root = buildTree(parameters);
 root->getPolynomialPoints();
 ```
 Which would print out the following: 
-
+```
 96, 152, 220,
-
+```
