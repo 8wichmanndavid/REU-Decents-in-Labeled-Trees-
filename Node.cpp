@@ -257,6 +257,7 @@ void Node::getPolynomialPoints(){
     for (size_t lcv = 0; lcv < sumOfHooklengthsOfMaximalDecents() + 1; lcv++){
         Node* stem = addStem(size_ + lcv + 1);
         myfile << stem->des() << ", ";
+        cout << stem->des() << ", ";
     }
     myfile.close();
 }
