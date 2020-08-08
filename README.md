@@ -19,7 +19,7 @@ Node* a = root->addChild(true);
 Node* b = root->addChild(false);
 Node* c = b->addChild(true);
 ```
-![BaseTree](/images/IMG_1557.PNG)
+<img src="https://github.com/8wichmanndavid/REU-Decents-in-Labeled-Trees-/blob/master/images/IMG_1557.PNG" width="300">
 
 The parameter passed into addChild determines if the node will be created as a descent (if true) or an ascent (if false). 
 ### The Integer List Method
