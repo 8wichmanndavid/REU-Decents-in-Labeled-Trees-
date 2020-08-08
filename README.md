@@ -13,13 +13,14 @@ One crucial thing to note about tree building with this code is that there is no
 it children
 ### The Reference Method 
 In the reference method, you use the fact that our addChild method returns a reference to the node that it adds and keep references to every new node you add. For the tree pictured below the reference method would look something like the following (for a descent at the root, change the root constructor parameters to {1, 1, true}): 
+
+<img src="https://github.com/8wichmanndavid/REU-Decents-in-Labeled-Trees-/blob/master/images/IMG_1557.PNG" width="300">
 ```c++
 Node* root = new Node{1, 0, false};
 Node* a = root->addChild(true);
 Node* b = root->addChild(false);
 Node* c = b->addChild(true);
 ```
-<img src="https://github.com/8wichmanndavid/REU-Decents-in-Labeled-Trees-/blob/master/images/IMG_1557.PNG" width="300">
 
 The parameter passed into addChild determines if the node will be created as a descent (if true) or an ascent (if false). 
 ### The Integer List Method
