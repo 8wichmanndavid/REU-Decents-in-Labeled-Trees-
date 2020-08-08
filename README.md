@@ -71,7 +71,13 @@ int parameters[] = {0, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 Node* root = buildTree(parameters);
 root->getPolynomialPoints();
 ```
+
 Which would print out the following: 
+
 ```
 96, 152, 220,
 ```
+
+And the coefficient vector could be solved with the following linear algebra: 
+
+<img src="https://github.com/8wichmanndavid/REU-Decents-in-Labeled-Trees-/blob/master/images/IMG_1570.jpg" width="300">
